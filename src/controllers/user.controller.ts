@@ -5,7 +5,10 @@ import type { AppRequestContext } from '../mikro-orm.config.js';
 import { validateEmail } from '../utils/validators/email.js';
 import { validateString } from '../utils/validators/string.js';
 
-type GetUsersResponse = Response<Omit<Users, 'id'>[] | { message: string }, Record<string, unknown>>;
+type GetUsersResponse = Response<
+    Omit<Users, 'id'>[] | { message: string },
+    Record<string, unknown>
+>;
 export const getUsers = async (
     req: AppRequestContext<{}, unknown>,
     res: GetUsersResponse,

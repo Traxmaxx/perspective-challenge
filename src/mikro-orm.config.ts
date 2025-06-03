@@ -18,7 +18,7 @@ export type AppRequestContext<
     Params extends ParamsDictionary = ParamsDictionary,
     Body = unknown,
     ResBody = unknown,
-    ReqQuery extends Query = Query
+    ReqQuery extends Query = Query,
 > = Request<Params, ResBody, Body, ReqQuery> & {
     DI: typeof DI;
     // Add custom request context properties here

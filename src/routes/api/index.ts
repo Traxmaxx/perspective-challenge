@@ -15,41 +15,41 @@ function errorHandler(err: Error, _: Request, res: Response, next: NextFunction)
     if (err instanceof ValidationError) {
         return res.status(422).json({ message: err.message });
     } else if (err instanceof UniqueConstraintViolationException) {
-
         return res.status(409).json({ message: err.message });
     }
 
     return res.status(500).send({ error: err });
 }
 
-router.use('/api/v1', 
-        /* #swagger.responses[422] = {
-            description: 'Validation error',
-            content: {
-                "application/json": {
-                    schema: {
-                        type: 'object',
-                        properties: {
-                            message: { type: 'string' }
-                        }
+router.use(
+    '/api/v1', 
+    /* #swagger.responses[422] = {
+        description: 'Validation error',
+        content: {
+            "application/json": {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        message: { type: 'string' }
                     }
                 }
             }
-        } */
-        /* #swagger.responses[409] = {
-            description: 'Conflict error',
-            content: {
-                "application/json": {
-                    schema: {
-                        type: 'object',
-                        properties: {
-                            message: { type: 'string' }
-                        }
+        }
+    } */
+    /* #swagger.responses[409] = {
+        description: 'Conflict error',
+        content: {
+            "application/json": {
+                schema: {
+                    type: 'object',
+                    properties: {
+                        message: { type: 'string' }
                     }
                 }
             }
-        } */
-        /* #swagger.responses[500] = {
+        }
+    } */
+    /* #swagger.responses[500] = {
         description: 'Internal server error',
         content: {
             "application/json": {
