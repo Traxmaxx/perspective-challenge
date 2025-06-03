@@ -133,26 +133,21 @@ To run the migration execute
 
 ## Run in production with dedeploy on docker push
 
-Create the following `docker-compose.yml` and change `traxmaxx` with the name of your GitHub account if you're building it yourself:
-
-```yaml
-services:
-  api:
-    restart: unless-stopped
-    image: ghcr.io/traxmaxx/perspective-challenge:latest
-    ports:
-      - "331111:3111"
-    env_file: "api.env"
-    extra_hosts:
-      - "host.docker.internal:172.18.0.1"
-  watchtower:
-    restart: unless-stopped
-    image: containrrr/watchtower
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /root/.docker/config.json:/config.json
-    command: --interval 30
-```
+Edit the `docker-compose.yml` and change `traxmaxx` with the name of your GitHub account if you're building it yourself:
 
 Create an env file called `api.env` next to your `docker-compose.yml`. This file should contain all necessary environment variables. Check .env.example for what is defined as a default and check if that works for you.
 Also make sure to change `NODE_ENV` to `production` for the migrations to run on server start. Otherwise you can also migrate manually before starting!
+
+Depending on how you installed docker, you might need to update the paths for watchtower. For example a user installation (not global) of Docker Desktop on MacOS needs the following volumes defined instead:
+```yaml
+services:
+  api:
+    ...
+  watchtower:
+    ...
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /root/.docker/config.json:/config.json
+```
+
+If you're set and the config looks fine, run `docker-compose up --build` to start the application in production mode.

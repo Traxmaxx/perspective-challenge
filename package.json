@@ -23,6 +23,7 @@
     "useTsNode": true
   },
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.44.1",
     "@mikro-orm/core": "^6.4.16",
     "@mikro-orm/migrations": "^6.4.16",
     "@mikro-orm/reflection": "^6.4.16",

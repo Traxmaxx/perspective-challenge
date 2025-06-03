@@ -1,5 +1,5 @@
 # Container image that runs your code
-FROM node:22.3-alpine
+FROM node:22.16-alpine
 LABEL authors="Traxmaxx"
 # update dependencies and install curl
 RUN apk upgrade --no-cache
