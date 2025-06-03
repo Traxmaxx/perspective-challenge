@@ -14,25 +14,6 @@ export const getUsers = async (
     res: GetUsersResponse,
     next: NextFunction,
 ) => {
-    // #swagger.description = 'Get all users'
-    /*  #swagger.parameters['created'] = {
-        in: 'query',
-        description: 'Sort by created_at date (asc or desc)',
-        schema: {
-            '@enum': ['asc', 'desc']
-        }
-    } */
-    /* #swagger.responses[200] = {
-        description: "Returns users array",
-        content: {
-            "application/json": {
-                schema: {
-                    type: "array",
-                    items: { $ref: "#/components/schemas/user" }
-                }
-            }
-        }
-    }*/
     try {
         const sort = req.query?.created === 'asc' ? 'asc' : 'desc';
 
@@ -68,21 +49,6 @@ export const createUser = async (
     res: CreateUserResponse,
     next: NextFunction,
 ) => {
-    // #swagger.description = 'Create a new user'
-
-    /* #swagger.parameters['body'] = {
-        in: 'body',
-        description: 'User creation form details',
-        required: true,
-        schema: {
-            type: 'object',
-            properties: {
-                name: { type: 'string' },
-                email: { type: 'string', format: 'email' },
-            },
-            required: ['email', 'name']
-        }
-    } */
     try {
         validateEmail(req.body?.email);
         validateString(req.body?.name, 'Name');
@@ -96,20 +62,6 @@ export const createUser = async (
             .persistAndFlush(user)
             .then(() => {
                 // TODO: Maybe send an email confirmation here?
-
-                /* #swagger.responses[201] = {
-                    description: 'Successfully created the user!',
-                    content: {
-                        "application/json": {
-                            schema: {
-                                type: 'object',
-                                properties: {
-                                    message: { type: 'string' }
-                                }
-                            }
-                        }
-                    }
-                } */
                 return res.status(201).json({ message: 'Successfully created user!' });
             })
             .catch((err: unknown) => {
