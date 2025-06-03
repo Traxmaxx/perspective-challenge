@@ -141,7 +141,7 @@ services:
     restart: unless-stopped
     image: ghcr.io/traxmaxx/perspective-challenge:latest
     ports:
-      - "33000:3000"
+      - "331111:3111"
     env_file: "api.env"
     extra_hosts:
       - "host.docker.internal:172.18.0.1"
@@ -155,3 +155,4 @@ services:
 ```
 
 Create an env file called `api.env` next to your `docker-compose.yml`. This file should contain all necessary environment variables. Check .env.example for what is defined as a default and check if that works for you.
+Also make sure to change `NODE_ENV` to `production` for the migrations to run on server start. Otherwise you can also migrate manually before starting!

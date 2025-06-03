@@ -14,5 +14,5 @@ COPY package-lock.json .
 COPY .env.example ./.env.production
 
 RUN npm ci --omit=dev
-EXPOSE 3000
+EXPOSE 3111
 CMD ["npm", "run", "start"]
