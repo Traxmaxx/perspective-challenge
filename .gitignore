@@ -1,0 +1,11 @@
+.DS_Store
+.idea
+.env.local
+.env
+node_modules
+npm-debug.log
+coverage
+sqlite.db
+sqlite.dev.db
+sqlite.test.db
+temp/
