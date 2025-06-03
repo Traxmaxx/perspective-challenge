@@ -2,6 +2,9 @@
 
 This project skeleton contains a basic Express setup one endpoint to create a user and one endpoint to fetch all users, as well as a basic empty unit test.
 
+[![CI-CD](https://github.com/Traxmaxx/perspective-challenge/actions/workflows/node.js.yml/badge.svg)](https://github.com/Traxmaxx/perspective-challenge/actions/workflows/node.js.yml)
+
+
 ### Goals
 1. Adjust POST /users that it accepts a user and stores it in a database.
     * The user should have a unique id, a name, a unique email address and a creation date
@@ -22,6 +25,8 @@ Feel free to add or change this project as you like.
 ### Architecture overview
 
 I use Swagger for OpenAPI documentation and manual testing. You can start the API and navigate to `http://localhost:3111/swagger` to try out the different API calls.
+
+![Swagger UI screenshot of GET users API call](screenshot.png)
 
 Database migration is handled with [MikroORM](https://mikro-orm.io/), which supports appropriate alternatives for the SQLite adapter. It’s also straightforward to implement pagination if the number of returned users starts to grow.
 
