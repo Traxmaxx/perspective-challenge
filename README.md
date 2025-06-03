@@ -147,7 +147,7 @@ services:
     ...
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /root/.docker/config.json:/config.json
+      - ~/.docker/config.json:/config.json
 ```
 
 If you're set and the config looks fine, run `docker-compose up --build` to start the application in production mode.
