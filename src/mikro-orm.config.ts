@@ -30,7 +30,7 @@ const config: Options = {
     driver: SqliteDriver,
     dbName: process.env.MIKRO_ORM_DB_NAME,
     driverOptions: {
-        connection: { ssl: process.env.NODE_ENV === 'production' },
+        // connection: { ssl: process.env.NODE_ENV === 'production' }, // uncomment when using postgresql adapter
     },
     // folder-based discovery setup, using common filename suffix
     entities: ['dist/entities/*.entity.js'],
