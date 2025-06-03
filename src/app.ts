@@ -21,19 +21,6 @@ function errorHandler(err: Error, req: Request, res: Response, next: NextFunctio
         return next(err);
     }
 
-    /* #swagger.responses[500] = {
-        description: 'Internal server error',
-        content: {
-            "application/json": {
-                schema: {
-                    type: 'object',
-                    properties: {
-                        message: { type: 'string' }
-                    }
-                }
-            }
-        }
-    } */
     return res.status(500).send({ error: err });
 }
 
@@ -60,7 +47,9 @@ app.use('/swagger-assets', express.static(getSwaggerPath()));
 app.use('/swagger', swaggerRouter);
 app.use('/health', healthRoutes);
 
-// ADD NEW ROUTES AFTER THIS LINE
+//////////////////////////////////////////
+// ADD NEW API VERSIONS AFTER THIS LINE //
+//////////////////////////////////////////
 app.use(apiRoutes.v1);
 
 // Generic 404 handler to catch eveything not handled already

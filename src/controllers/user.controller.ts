@@ -106,43 +106,9 @@ export const createUser = async (
                 return res.status(201).json({ message: 'Successfully created user!' });
             })
             .catch((err: any) => {
-                if (err instanceof UniqueConstraintViolationException) {
-                    /* #swagger.responses[409] = {
-                        description: 'Conflict error',
-                        content: {
-                            "application/json": {
-                                schema: {
-                                    type: 'object',
-                                    properties: {
-                                        message: { type: 'string' }
-                                    }
-                                }
-                            }
-                        }
-                    } */
-                    return res.status(409).json({ message: err.message });
-                }
-
                 return next(err);
             });
     } catch (err) {
-        if (err instanceof ValidationError) {
-            /* #swagger.responses[422] = {
-                        description: 'Validation error',
-                        content: {
-                            "application/json": {
-                                schema: {
-                                    type: 'object',
-                                    properties: {
-                                        message: { type: 'string' }
-                                    }
-                                }
-                            }
-                        }
-                    } */
-            return res.status(422).json({ message: err.message });
-        } else {
-            return next(err);
-        }
+        return next(err);
     }
 };
