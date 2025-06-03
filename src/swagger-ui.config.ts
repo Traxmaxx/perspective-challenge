@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import {
     absolutePath as getSwaggerPath,
-    //@ts-ignore
+    // @ts-expect-error TS is unable to find this file but it exists after compiling
 } from 'swagger-ui-dist';
 import swaggerAutogen from 'swagger-autogen';
 

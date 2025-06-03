@@ -7,7 +7,7 @@ import { Users } from '../../src/entities/users.entity';
 describe('/api/v1/users/ routes', () => {
     let userId: string;
     const mockCreatedAt = new Date();
-    
+
     beforeEach((doneCallback) => {
         const em = DI.orm.em.fork();
 
@@ -58,7 +58,7 @@ describe('/api/v1/users/ routes', () => {
                 const res = await request(app).get('/api/v1/users?create=desc');
                 expect(res.status).toEqual(200);
                 expect(res.body.length).toBeGreaterThan(2);
-                expect(res.body[0].email).toEqual('alex+testcontroller3@netzok.net')
+                expect(res.body[0].email).toEqual('alex+testcontroller3@netzok.net');
             });
         });
     });

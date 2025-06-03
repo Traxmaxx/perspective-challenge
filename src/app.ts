@@ -2,7 +2,7 @@
 
 import { RequestContext } from '@mikro-orm/sqlite';
 import express from 'express';
-//@ts-expect-error Swagger dist is just static files and untyped
+// @ts-expect-error Swagger dist is just static files and untyped
 import { absolutePath as getSwaggerPath } from 'swagger-ui-dist';
 
 import type { Application, NextFunction, Request, Response } from 'express';

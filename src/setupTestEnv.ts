@@ -29,7 +29,6 @@ beforeAll((doneCallback) => {
         connect: false,
         debug: false,
     }).then((orm) => {
-        //@ts-ignore
         DI.orm = orm;
         // Create the schema
         DI.orm.em = DI.orm.em.fork();

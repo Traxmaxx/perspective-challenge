@@ -63,6 +63,7 @@ router.use('/api/v1',
         }
     } */
     usersRoutes);
+
 // @ts-expect-error Not sure why the router seems to take an error object but the types says no. Need more time to investigate
 router.use(errorHandler);
 router.use((req, res, next) => {
