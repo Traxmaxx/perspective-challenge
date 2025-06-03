@@ -55,7 +55,7 @@ Last but not least authentication should be implemented to secure the API endpoi
 │   ├── routes              # The internal sub page routing tables mapping the controllers to a path
 │   ├── seeders             # Seed files for the DB managed via MikroORM
 │   ├── types               # All reusable custom types go here
-│   ├── app.ts              # Entry point for the API with all the routes and AdminJS config
+│   ├── app.ts              # Entry point for the API with all the routes. New API versions should be added here
 │   ├── index.ts            # Entry point for the server and docker container
 │   ├── mikro-orm.config.ts # The config for MikroORM
 │   ├── setupTestEnv.ts     # We need to mock some things and handle server start/stop and the memory db stuff, this happens here

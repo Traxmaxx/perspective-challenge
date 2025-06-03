@@ -1,4 +1,3 @@
-// routes/api/v1/index.ts
 import { NextFunction, Router, Response, Request } from 'express';
 import { router as usersRoutes } from './v1/user.router.js';
 import { UniqueConstraintViolationException } from '@mikro-orm/core';

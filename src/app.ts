@@ -47,9 +47,9 @@ app.use('/swagger-assets', express.static(getSwaggerPath()));
 app.use('/swagger', swaggerRouter);
 app.use('/health', healthRoutes);
 
-//////////////////////////////////////////
-// ADD NEW API VERSIONS AFTER THIS LINE //
-//////////////////////////////////////////
+///////////////////////////////////////////
+// Add new API versions after this block //
+///////////////////////////////////////////
 app.use(apiRoutes.v1);
 
 // Generic 404 handler to catch eveything not handled already

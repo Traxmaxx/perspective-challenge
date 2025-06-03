@@ -21,7 +21,9 @@ export type AppRequestContext<
     ReqQuery extends Query = Query,
 > = Request<Params, ResBody, Body, ReqQuery> & {
     DI: typeof DI;
-    // Add custom request context properties here
+    /////////////////////////////////////////////////////////////////
+    // Add more custom request context properties after this block //
+    /////////////////////////////////////////////////////////////////
 };
 
 const config: Options = {
@@ -39,7 +41,7 @@ const config: Options = {
         glob: '!(*.d).{js,ts}',
         snapshot: false,
     },
-    // we will use the ts-morph reflection, an alternative to the default reflect-metadata provider
+    // I used the ts-morph reflection, an alternative to the default reflect-metadata provider
     // check the documentation for their differences: https://mikro-orm.io/docs/metadata-providers
     metadataProvider: TsMorphMetadataProvider,
     // enable debug mode to log SQL queries and discovery information
