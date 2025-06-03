@@ -112,8 +112,8 @@ node dist/server.js
 ## Scripts 
 - `npm run build` Transpile the app,
 - `npm run start`: Start the transpiled app from dist folder 
-- `npm run  startBundledDev`: Start the transpiled app from dist folder in dev mode,
-- `npm run  dev"`: Start dev mode with file watcher,
+- `npm run startBundledDev`: Start the transpiled app from dist folder in dev mode,
+- `npm run dev"`: Start dev mode with file watcher,
 - `npm run lint`: Run eslint,
 - `npm run test`: Run ts-jest with debug output,
 - `npm run test-ci`: Run ts-jest without debug output
@@ -133,13 +133,13 @@ To run the migration execute
 
 ## Run in production with dedeploy on docker push
 
-Create the following `docker-compose.yml` and change `<REPLACE_ME>` with the name of your GitHub account:
+Create the following `docker-compose.yml` and change `traxmaxx` with the name of your GitHub account if you're building it yourself:
 
 ```yaml
 services:
   api:
     restart: unless-stopped
-    image: ghcr.io/<REPLACE_ME>/perspective-challenge:latest
+    image: ghcr.io/traxmaxx/perspective-challenge:latest
     ports:
       - "33000:3000"
     env_file: "api.env"
@@ -154,4 +154,4 @@ services:
     command: --interval 30
 ```
 
-Create an env file called `api.env` next to your `docker-compose.yml`. This will contain all necessary environment variables.
+Create an env file called `api.env` next to your `docker-compose.yml`. This file should contain all necessary environment variables. Check .env.example for what is defined as a default and check if that works for you.

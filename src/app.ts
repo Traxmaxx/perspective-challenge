@@ -11,7 +11,7 @@ import { router as healthRoutes } from './routes/health.router.js';
 import { router as swaggerRouter } from './routes/swagger.router.js';
 import apiRoutes from './routes/api/index.js';
 
-import { DI } from './mikro-orm.config.js';
+import { AppRequestContext, DI } from './mikro-orm.config.js';
 
 const app: Application = express();
 
@@ -25,14 +25,14 @@ function errorHandler(err: Error, req: Request, res: Response, next: NextFunctio
 }
 
 app.use(express.json());
-app.use((req, res, next) => {
-    (req as any).DI = DI;
+app.use((req, _, next) => {
+    (req as AppRequestContext).DI = DI;
     next();
 });
 
 // Test uses a memory instance of the database and we want to connect on demand
 if (process.env.NODE_ENV !== 'test') {
-    app.use((req, res, next) => {
+    app.use((_, __, next) => {
         if (DI.orm) {
             RequestContext.create(DI.orm.em, next);
         } else {
@@ -53,7 +53,7 @@ app.use('/health', healthRoutes);
 app.use(apiRoutes.v1);
 
 // Generic 404 handler to catch eveything not handled already
-app.use((req, res, next) => {
+app.use((_, res) => {
     res.status(404).json({
         message: 'Nothing here, read the API documentation to find your way back home : )',
     });

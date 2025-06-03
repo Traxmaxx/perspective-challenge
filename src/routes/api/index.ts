@@ -7,7 +7,7 @@ import { ValidationError } from '../../types/errors/common.js';
 const router = Router();
 
 // Generic error handler to catch everything not handled already
-function errorHandler(err: Error, req: Request, res: Response, next: NextFunction) {
+function errorHandler(err: Error, _: Request, res: Response, next: NextFunction) {
     if (res.headersSent) {
         return next(err);
     }
@@ -66,7 +66,7 @@ router.use('/api/v1',
 
 // @ts-expect-error Not sure why the router seems to take an error object but the types says no. Need more time to investigate
 router.use(errorHandler);
-router.use((req, res, next) => {
+router.use((_, res) => {
     res.status(404).json({
         message: 'Nothing here, read the API documentation to find your way back home : )',
     });

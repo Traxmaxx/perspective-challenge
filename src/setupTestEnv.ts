@@ -1,10 +1,10 @@
 import dotenv from 'dotenv';
 import http from 'http';
 import { MikroORM, RequestContext } from '@mikro-orm/core';
-import { SqliteDriver } from '@mikro-orm/sqlite';
 
 import { app } from './app.js';
 import config, { DI as appDI } from './mikro-orm.config.js';
+import type { AddressInfo } from 'net';
 
 dotenv.config({ path: '.env.test' });
 
@@ -14,7 +14,7 @@ const getAvailablePort = (): Promise<number> => {
     return new Promise((resolve, reject) => {
         const server = http.createServer();
         server.listen(0, () => {
-            const port = (server.address() as any).port;
+            const port = (server.address() as AddressInfo).port;
             server.close(() => {
                 resolve(port);
             });
@@ -50,7 +50,9 @@ beforeAll((doneCallback) => {
 });
 
 beforeEach(() => {
-    RequestContext.create(DI.orm.em, () => {});
+    RequestContext.create(DI.orm.em, () => {
+        return true;
+    });
 });
 
 afterEach(() => {

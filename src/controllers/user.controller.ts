@@ -1,15 +1,13 @@
-import type { NextFunction, Request, Response } from 'express';
+import type { NextFunction, Response } from 'express';
 
 import { Users } from '../entities/users.entity.js';
-import { UniqueConstraintViolationException } from '@mikro-orm/sqlite';
 import type { AppRequestContext } from '../mikro-orm.config.js';
 import { validateEmail } from '../utils/validators/email.js';
-import { ValidationError } from '../types/errors/common.js';
 import { validateString } from '../utils/validators/string.js';
 
-type GetUsersResponse = Response<Omit<Users, 'id'>[] | { message: string }, Record<string, any>>;
+type GetUsersResponse = Response<Omit<Users, 'id'>[] | { message: string }, Record<string, unknown>>;
 export const getUsers = async (
-    req: AppRequestContext<void, any>,
+    req: AppRequestContext<{}, unknown>,
     res: GetUsersResponse,
     next: NextFunction,
 ) => {
@@ -53,9 +51,15 @@ export const getUsers = async (
 
 type CreateUserResponse = Response<
     Omit<Users, 'created_at' | 'updated_at' | 'id'> | { message: string },
-    Record<string, any>
+    Record<string, unknown>
 >;
-type CreateUserRequest = AppRequestContext<{ id: string }>;
+
+interface CreateUserBody {
+    name: string;
+    email: string;
+}
+
+type CreateUserRequest = AppRequestContext<{}, CreateUserBody>;
 export const createUser = async (
     req: CreateUserRequest,
     res: CreateUserResponse,
@@ -105,7 +109,7 @@ export const createUser = async (
                 } */
                 return res.status(201).json({ message: 'Successfully created user!' });
             })
-            .catch((err: any) => {
+            .catch((err: unknown) => {
                 return next(err);
             });
     } catch (err) {

@@ -1,5 +1,4 @@
 import request from 'supertest';
-import { v4 } from 'uuid';
 
 import { DI, app } from '../../src/setupTestEnv';
 import { Users } from '../../src/entities/users.entity';

@@ -13,7 +13,7 @@
     "start": "./node_modules/.bin/dotenvx run -- node --require @opentelemetry/auto-instrumentations-node/register dist/index.js",
     "startBundledDev": "NODE_ENV=development node dist/index.js",
     "dev": "NODE_ENV=development nodemon --exec 'node --no-warnings=ExperimentalWarning --loader ts-node/esm' src/index.ts",
-    "lint": "eslint",
+    "lint": "eslint -c eslint.config.js",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage --runInBand",
     "test-ci": "NODE_OPTIONS=--experimental-vm-modules jest -c jest.config.js --ci --runInBand --silent"
   },
@@ -41,6 +41,7 @@
     "@mikro-orm/cli": "^6.4.16",
     "@types/cors": "^2.8.18",
     "@types/express": "^5.0.2",
+    "@types/express-serve-static-core": "^5.0.6",
     "@types/jest": "^29.5.14",
     "@types/supertest": "^6.0.3",
     "@typescript-eslint/eslint-plugin": "^8.33.0",
@@ -54,6 +55,7 @@
     "supertest": "^7.1.1",
     "ts-jest": "^29.3.4",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.33.1"
   }
 }

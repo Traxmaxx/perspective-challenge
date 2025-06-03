@@ -10,8 +10,7 @@ import { app } from './app.js';
 dotenv.config();
 
 const port = process.env.PORT || 3111;
-
-var corsOptions = {
+const corsOptions = {
     origin: process.env.CORS_ORIGIN,
 };
 

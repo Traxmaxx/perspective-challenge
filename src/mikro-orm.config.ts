@@ -3,15 +3,23 @@ import { Options, SqliteDriver, EntityManager, MikroORM, Utils } from '@mikro-or
 import { TsMorphMetadataProvider } from '@mikro-orm/reflection';
 
 import type { Request } from 'express';
+import type { ParamsDictionary, Query } from 'express-serve-static-core';
 
 export const DI = {} as {
     orm: MikroORM;
     em: EntityManager;
-    port?: any;
-    server?: any;
+    port?: number;
+    server: {
+        close: () => void;
+    };
 };
 
-export type AppRequestContext<Params = any, Body = any> = Request<Params, any, Body | any> & {
+export type AppRequestContext<
+    Params extends ParamsDictionary = ParamsDictionary,
+    Body = unknown,
+    ResBody = unknown,
+    ReqQuery extends Query = Query
+> = Request<Params, ResBody, Body, ReqQuery> & {
     DI: typeof DI;
     // Add custom request context properties here
 };
