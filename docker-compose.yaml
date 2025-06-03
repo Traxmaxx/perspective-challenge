@@ -1,0 +1,18 @@
+services:
+  api:
+    platform: linux/amd64
+    restart: unless-stopped
+    image: ghcr.io/traxmaxx/perspective-challenge:latest
+    ports:
+      - "33111:3111"
+    env_file: "api.env"
+    extra_hosts:
+      - "host.docker.internal:172.18.0.1"
+  watchtower:
+    platform: linux/amd64
+    restart: unless-stopped
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /root/.docker/config.json:/config.json
+    command: --interval 30
